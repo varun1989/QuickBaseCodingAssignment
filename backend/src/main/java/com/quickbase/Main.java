@@ -56,7 +56,7 @@ public class Main {
 		while (entrySetIterator.hasNext()) {
 		   System.out.println("----------------------------------------------------------------");
 		   Entry entry = entrySetIterator.next();
-		   System.out.println("key: " + entry.getKey() + " |-> population: " + entry.getValue());
+		   System.out.println("Country: " + entry.getKey() + " |-> population: " + entry.getValue());
 		}
 
 	}
