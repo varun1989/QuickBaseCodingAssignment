@@ -23,19 +23,27 @@ public class Main {
 	public static void main( String args[] ) {
     	ServiceUtil.populateAllMultipleCountryNames();
         Main main = new Main();
-        main.startProcess();
+        try {
+			main.startProcess();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         
     }
 
-	private void startProcess() {
+	private void startProcess() throws Exception {
 		
 		Map<String,Integer> source1 = countryPopulationService.getPopulationFromDB();
 		Map<String,Integer> source2 = countryPopulationService.getPopulationFromStat();
-		Map<String,Integer> combinedSource = combineSource(source1,source2);
-		System.out.println("Country Population from DB Source " + source1);
-		System.out.println("Country Population from Stats Source API " + source2);
-		System.out.println("Data after combining both sources ");
-		printData(combinedSource);
+		if(source1 != null && source2 != null) {
+			Map<String,Integer> combinedSource = combineSource(source1,source2);
+			System.out.println("Country Population from DB Source " + source1);
+			System.out.println("Country Population from Stats Source API " + source2);
+			System.out.println("Data after combining both sources ");
+			printData(combinedSource);
+		} else {
+			throw new Exception("Error while processing data");
+		}
 	}
 
 	private Map<String,Integer> combineSource(Map<String, Integer> dbSource, Map<String, Integer> statSource) {
