@@ -29,7 +29,10 @@ public class CountryPopulationServiceImpl implements CountryPopulationService{
 		for(Pair<String,Integer> country: countryInfoStats) {
 			countryInfoStatsMap.put(country.getKey(), country.getValue());
 		}
-		return countryInfoStatsMap;
+		if(!countryInfoStatsMap.isEmpty()) {
+			return countryInfoStatsMap;
+		}
+		return null;
 	}
 	
 	
